@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  title: Star Wars API
+  description: Based on https://swapi.dev/api
+  version: '1.0'
+servers:
+  - url: https://swapi.dev/api
+paths:
+  /people/:
+    get:
+      summary: GetPeople
+      description: Get characters from the Star Wars universe.
+      operationId: getpeople
+      responses:
+        '200':
+          description: 'the entire collection of characters'
+          content:
+            application/json:
+              example:
+                count: 82
+                results:
+                - name: Luke Skywalker
+                  height: '172'
+                  mass: '77'
+                  hair_color: blond
+                  skin_color: fair
+                  eye_color: blue
+                  birth_year: 19BBY
+                  gender: male
+  '/people/{id}/':
+    get:
+      summary: GetPeopleById
+      description: Get a specific character by Id from the Star Wars universe.
+      operationId: getpeoplebyid
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: 'integer'
+      responses:
+        '200':
+          description: 'the requested character details'
+          content:
+            application/json:
+              example:
+                name: C-3PO
+                height: '167'
+                mass: '75'
+                hair_color: n/a
+                skin_color: gold
+                eye_color: yellow
+                birth_year: 112BBY
+                gender: n/a
+  /films/:
+    get:
+      summary: GetFilms
+      description: Get films from the Star Wars universe.
+      operationId: getfilms
+      responses:
+        '200':
+          description: 'the entire collection of films'
+          content:
+            application/json:
+              example:
+                count: 6
+                results:
+                - title: A New Hope
+                  episode_id: 4
+  '/films/{id}/':
+    get:
+      summary: GetFilmById
+      description: Get a specific film by Id from the Star Wars universe.
+      operationId: getfilmbyid
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: 'integer'
+      responses:
+        '200':
+          description: 'the requested film details'
+          content:
+            application/json:
+              example:
+                title: The Empire Strikes Back
+                episode_id: 5
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

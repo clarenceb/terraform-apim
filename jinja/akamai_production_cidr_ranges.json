@@ -1,0 +1,17 @@
+{
+    "networkList": {
+      "name": "Akamai Production CIDR Ranges",
+      "type": "IP",
+      "list": [
+        "192.168.0.0/16",
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.11",
+        "192.168.0.12",
+        "192.168.0.13"
+      ],
+      "description": "Akamai production CIDR ranges",
+      "createdDate": "2024-07-23T14:20:53Z",
+      "lastModifiedDate": "2024-07-23T14:20:53Z"
+    }
+}

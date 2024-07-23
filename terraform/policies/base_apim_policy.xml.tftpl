@@ -1,0 +1,21 @@
+<policies>
+    <inbound>
+      <ip-filter action="forbid">
+        <address-range from="0.0.0.0" to="255.255.255.255" />
+      </ip-filter>
+      %{~ for cidr in cidrs ~}
+      <ip-filter action="allow">
+      %{~ if length(cidr.network_address) == 0 ~}
+          <address>${cidr.address}</address>
+      %{~ else ~}
+          <address-range from="${cidr.network_address}" to="${cidr.broadcast_address}" />
+      %{~ endif ~}
+      </ip-filter>
+      %{~ endfor ~}
+    </inbound>
+    <backend>
+        <forward-request />
+    </backend>
+    <outbound />
+    <on-error />
+</policies>
