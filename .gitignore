@@ -403,6 +403,8 @@ FodyWeavers.xsd
 *.lock.info
 *.tfstate
 *.tfstate.backup
+*.tfplan
 
 # Python
 .venv
+
